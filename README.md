@@ -4,8 +4,7 @@ A command-line application that will calculate the ranking table for a soccer le
 **Software requirements**
 
  - Java JDK 1.7 or higher
- - [Maven 3](https://maven.apache.org/install.html)   
- - Git
+ - [Maven 3](https://maven.apache.org/install.html)    
 
 **Installation Instructions**
 1. Clone the *SoccerLeagueRanking* or download the zip file from github
