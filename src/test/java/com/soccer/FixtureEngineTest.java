@@ -41,8 +41,8 @@ public class FixtureEngineTest {
         fixtureEngine.processResultPerLine(sampleLineText);
         fixtureEngine.recordPoints();
         Assert.assertEquals(2, fixtureEngine.getTeamsThatPlayed().size());
-        Assert.assertEquals("Tarantula", fixtureEngine.getTeamsThatPlayed().get(0).getName());
-        Assert.assertEquals("Snake", fixtureEngine.getTeamsThatPlayed().get(1).getName());
+        Assert.assertEquals("Tarantulas", fixtureEngine.getTeamsThatPlayed().get(0).getName());
+        Assert.assertEquals("Snakes", fixtureEngine.getTeamsThatPlayed().get(1).getName());
         Assert.assertEquals(3, fixtureEngine.getTeamsThatPlayed().get(0).getPoints());
         Assert.assertEquals(0, fixtureEngine.getTeamsThatPlayed().get(1).getPoints());
     }
@@ -55,14 +55,14 @@ public class FixtureEngineTest {
         leaderBoard.sortTeams();
         List<Team> teamList = leaderBoard.getTeams();
         Assert.assertEquals(6, teamList.get(0).getPoints());
-        Assert.assertEquals("Tarantula", teamList.get(0).getName());
+        Assert.assertEquals("Tarantulas", teamList.get(0).getName());
         Assert.assertEquals(5, teamList.get(1).getPoints());
-        Assert.assertEquals("Lion", teamList.get(1).getName());
+        Assert.assertEquals("Lions", teamList.get(1).getName());
         Assert.assertEquals(1, teamList.get(2).getPoints());
-        Assert.assertEquals("FC Awesom", teamList.get(2).getName());
+        Assert.assertEquals("FC Awesome", teamList.get(2).getName());
         Assert.assertEquals(1, teamList.get(3).getPoints());
-        Assert.assertEquals("Snake", teamList.get(3).getName());
+        Assert.assertEquals("Snakes", teamList.get(3).getName());
         Assert.assertEquals(0, teamList.get(4).getPoints());
-        Assert.assertEquals("Grouche", teamList.get(4).getName());
+        Assert.assertEquals("Grouches", teamList.get(4).getName());
     }
 }

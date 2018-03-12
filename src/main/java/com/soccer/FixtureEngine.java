@@ -54,8 +54,9 @@ public class FixtureEngine {
 
         for (String splitString : line.trim().split(",")) {
 
-            for (String teamName : splitString.trim().split("[\\S+.*?]\\s+\\d+\\s*$")) {
-                Team team = new Team(teamName);
+            for (String sps : splitString.trim().split("^([A-Za-z]|[0-9])+$")) {
+                String teamName = sps.replaceAll("[^a-zA-Z\\s]","");
+                Team team = new Team(teamName.trim());
                 this.teamsThatPlayed.add(team);
             }
             Matcher matcher = Pattern.compile("[\\d+]\\s*$").matcher(splitString);
@@ -63,6 +64,9 @@ public class FixtureEngine {
                 this.scores.add(Integer.parseInt(matcher.group(0)));
             }
         }
+    }
+    private static String removeSignsFromName(String name) {
+        return name.replaceAll("^\\d+\\.", "");
     }
 
 }
