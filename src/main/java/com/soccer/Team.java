@@ -15,11 +15,11 @@ public class Team {
     @Setter
     private String name;
 
-    public Team(String name){
+    public Team(String name) {
         this.name = name;
     }
 
-    public void incrementPoints(int points){
+    public void incrementPoints(int points) {
         this.points += points;
     }
 
@@ -47,9 +47,9 @@ public class Team {
             int team1Points = team1.getPoints();
             int team2Points = team2.getPoints();
 
-            int difference =  team2Points - team1Points;
+            int difference = team2Points - team1Points;
 
-            if(!(difference == 0)){
+            if (!(difference == 0)) {
                 return difference;
             }
 

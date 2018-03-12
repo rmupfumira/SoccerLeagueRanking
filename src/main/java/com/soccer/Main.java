@@ -9,12 +9,11 @@ import java.io.File;
 import java.io.IOException;
 
 public class Main {
-    Logger logger = Logger.getLogger(Main.class);
 
     @Option(name = "-help", usage = "prints commandline help ")
     private boolean help;
 
-    @Option(name="-f", usage = "Upload a txt file with fixture results separated by commas ")
+    @Option(name = "-f", usage = "Upload a txt file with fixture results separated by commas ")
     private File file;
 
     public static void main(String[] args) {
@@ -25,6 +24,7 @@ public class Main {
             System.out.println(e.getMessage());
         }
     }
+
     public void doMain(String[] args) throws IOException {
         CmdLineParser parser = new CmdLineParser(this);
 
@@ -33,16 +33,16 @@ public class Main {
             parser.parseArgument(args);
 
             //prints help
-            if(help){
+            if (help) {
                 parser.printUsage(System.out);
                 return;
             }
 
-            if(file != null){
+            if (file != null) {
                 LeaderBoard leaderBoard = new LeaderBoard();
                 leaderBoard.parseFixtureResultsFile(file);
                 leaderBoard.displayLeaderBoard();
-            }else {
+            } else {
                 parser.printUsage(System.err);
             }
 

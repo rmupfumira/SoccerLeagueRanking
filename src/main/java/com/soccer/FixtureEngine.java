@@ -22,47 +22,45 @@ public class FixtureEngine {
     @Setter
     private List<Integer> scores = new ArrayList<Integer>();
 
-    public void recordWin(Team team){
+    public void recordWin(Team team) {
         team.incrementPoints(WIN_POINTS);
     }
 
-    public void recordTie(Team team){
+    public void recordTie(Team team) {
         team.incrementPoints(TIE_POINTS);
     }
 
-    public Team getWinner(int score1, int score2){
-        if (score1 > score2){
+    public Team getWinner(int score1, int score2) {
+        if (score1 > score2) {
             return this.getTeamsThatPlayed().get(0);
-        }
-        else{
+        } else {
             return this.getTeamsThatPlayed().get(1);
         }
     }
 
-    public void recordPoints(){
+    public void recordPoints() {
         int score1 = this.getScores().get(0);
         int score2 = this.getScores().get(1);
-        if(score1 == score2){
+        if (score1 == score2) {
             this.recordTie(this.getTeamsThatPlayed().get(0));
             this.recordTie(this.getTeamsThatPlayed().get(1));
-        }
-        else {
+        } else {
             this.recordWin(this.getWinner(score1, score2));
         }
     }
 
 
-    public void processResultPerLine(String line){
+    public void processResultPerLine(String line) {
 
-        for (String splitString: line.trim().split(",")){
+        for (String splitString : line.trim().split(",")) {
 
-            for (String teamName: splitString.trim().split("[\\S+.*?]\\s+\\d+\\s*$")){
+            for (String teamName : splitString.trim().split("[\\S+.*?]\\s+\\d+\\s*$")) {
                 Team team = new Team(teamName);
                 this.teamsThatPlayed.add(team);
             }
 
-            Matcher matcher = Pattern.compile( "[\\d+]\\s*$" ).matcher( splitString );
-            while ( matcher.find() ) {
+            Matcher matcher = Pattern.compile("[\\d+]\\s*$").matcher(splitString);
+            while (matcher.find()) {
                 this.scores.add(Integer.parseInt(matcher.group(0)));
             }
 
