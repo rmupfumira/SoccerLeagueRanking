@@ -58,12 +58,10 @@ public class FixtureEngine {
                 Team team = new Team(teamName);
                 this.teamsThatPlayed.add(team);
             }
-
             Matcher matcher = Pattern.compile("[\\d+]\\s*$").matcher(splitString);
             while (matcher.find()) {
                 this.scores.add(Integer.parseInt(matcher.group(0)));
             }
-
         }
     }
 

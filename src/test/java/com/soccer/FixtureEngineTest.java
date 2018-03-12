@@ -15,54 +15,54 @@ public class FixtureEngineTest {
     File file;
 
     @Before
-    public void setup(){
+    public void setup() {
         ClassLoader classLoader = getClass().getClassLoader();
         file = new File(classLoader.getResource("input.txt").getFile());
     }
 
     @Test
-    public void shouldParseFixtureResultFromFileCorrectly()throws Exception{
+    public void shouldParseFixtureResultFromFileCorrectly() throws Exception {
         Assert.assertTrue(file.exists());
-        BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(file) , "UTF8"));
+        BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF8"));
         String str;
-        while (( str = in.readLine() ) != null ) {
+        while ((str = in.readLine()) != null) {
             FixtureEngine fixtureEngine = new FixtureEngine();
             fixtureEngine.processResultPerLine(str);
-            Assert.assertEquals(2,fixtureEngine.teamsThatPlayed.size());
-            Assert.assertEquals(2,fixtureEngine.getScores().size());
+            Assert.assertEquals(2, fixtureEngine.teamsThatPlayed.size());
+            Assert.assertEquals(2, fixtureEngine.getScores().size());
         }
 
     }
 
     @Test
-    public void shouldRecordPoints(){
+    public void shouldRecordPoints() {
         String sampleLineText = "Tarantulas 3, Snakes 1";
-       FixtureEngine fixtureEngine = new FixtureEngine();
-       fixtureEngine.processResultPerLine(sampleLineText);
-       fixtureEngine.recordPoints();
-       Assert.assertEquals(2,fixtureEngine.getTeamsThatPlayed().size());
-       Assert.assertEquals("Tarantula",fixtureEngine.getTeamsThatPlayed().get(0).getName());
-       Assert.assertEquals("Snake",fixtureEngine.getTeamsThatPlayed().get(1).getName());
-       Assert.assertEquals(3,fixtureEngine.getTeamsThatPlayed().get(0).getPoints());
-       Assert.assertEquals(0,fixtureEngine.getTeamsThatPlayed().get(1).getPoints());
+        FixtureEngine fixtureEngine = new FixtureEngine();
+        fixtureEngine.processResultPerLine(sampleLineText);
+        fixtureEngine.recordPoints();
+        Assert.assertEquals(2, fixtureEngine.getTeamsThatPlayed().size());
+        Assert.assertEquals("Tarantula", fixtureEngine.getTeamsThatPlayed().get(0).getName());
+        Assert.assertEquals("Snake", fixtureEngine.getTeamsThatPlayed().get(1).getName());
+        Assert.assertEquals(3, fixtureEngine.getTeamsThatPlayed().get(0).getPoints());
+        Assert.assertEquals(0, fixtureEngine.getTeamsThatPlayed().get(1).getPoints());
     }
 
     @Test
-    public void shouldDisplayLeaderBoardInSortedOrder() throws Exception{
+    public void shouldDisplayLeaderBoardInSortedOrder() throws Exception {
         Assert.assertTrue(file.exists());
         LeaderBoard leaderBoard = new LeaderBoard();
         leaderBoard.parseFixtureResultsFile(file);
         leaderBoard.sortTeams();
         List<Team> teamList = leaderBoard.getTeams();
-        Assert.assertEquals(6,teamList.get(0).getPoints());
-        Assert.assertEquals("Tarantula",teamList.get(0).getName());
-        Assert.assertEquals(5,teamList.get(1).getPoints());
-        Assert.assertEquals("Lion",teamList.get(1).getName());
-        Assert.assertEquals(1,teamList.get(2).getPoints());
-        Assert.assertEquals("FC Awesom",teamList.get(2).getName());
-        Assert.assertEquals(1,teamList.get(3).getPoints());
-        Assert.assertEquals("Snake",teamList.get(3).getName());
-        Assert.assertEquals(0,teamList.get(4).getPoints());
-        Assert.assertEquals("Grouche",teamList.get(4).getName());
+        Assert.assertEquals(6, teamList.get(0).getPoints());
+        Assert.assertEquals("Tarantula", teamList.get(0).getName());
+        Assert.assertEquals(5, teamList.get(1).getPoints());
+        Assert.assertEquals("Lion", teamList.get(1).getName());
+        Assert.assertEquals(1, teamList.get(2).getPoints());
+        Assert.assertEquals("FC Awesom", teamList.get(2).getName());
+        Assert.assertEquals(1, teamList.get(3).getPoints());
+        Assert.assertEquals("Snake", teamList.get(3).getName());
+        Assert.assertEquals(0, teamList.get(4).getPoints());
+        Assert.assertEquals("Grouche", teamList.get(4).getName());
     }
 }

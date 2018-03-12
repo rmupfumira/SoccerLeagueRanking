@@ -35,7 +35,6 @@ public class Team {
         }
 
         Team other = (Team) obj;
-
         return this.getName().equalsIgnoreCase(other.getName());
     }
 
@@ -52,7 +51,6 @@ public class Team {
             if (!(difference == 0)) {
                 return difference;
             }
-
             return team1.getName().compareTo(team2.getName());
         }
 
