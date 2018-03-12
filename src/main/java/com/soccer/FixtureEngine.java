@@ -54,14 +54,14 @@ public class FixtureEngine {
 
     public void processResultPerLine(String line){
 
-        for (String retval: line.trim().split(",")){
+        for (String splitString: line.trim().split(",")){
 
-            for (String teamName: retval.split("[\\S+.*?]\\s+\\d+\\s*$")){
+            for (String teamName: splitString.trim().split("[\\S+.*?]\\s+\\d+\\s*$")){
                 Team team = new Team(teamName);
                 this.teamsThatPlayed.add(team);
             }
 
-            Matcher matcher = Pattern.compile( "[\\d+]\\s*$" ).matcher( retval );
+            Matcher matcher = Pattern.compile( "[\\d+]\\s*$" ).matcher( splitString );
             while ( matcher.find() ) {
                 this.scores.add(Integer.parseInt(matcher.group(0)));
             }

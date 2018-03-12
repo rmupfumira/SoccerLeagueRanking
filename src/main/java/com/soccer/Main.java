@@ -41,6 +41,7 @@ public class Main {
             if(file != null){
                 LeaderBoard leaderBoard = new LeaderBoard();
                 leaderBoard.parseFixtureResultsFile(file);
+                leaderBoard.displayLeaderBoard();
             }else {
                 parser.printUsage(System.err);
             }
