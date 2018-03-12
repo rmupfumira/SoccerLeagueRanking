@@ -39,7 +39,6 @@ public class LeaderBoard {
                         this.addTeam(team);
                     }
                 }
-                displayLeaderBoard();
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
@@ -50,10 +49,12 @@ public class LeaderBoard {
         }
     }
 
-
+    public void sortTeams(){
+        Collections.sort(teams, Team.TeamComparator);
+    }
 
     public  void displayLeaderBoard(){
-        Collections.sort(teams, Team.TeamComparator);
+        sortTeams();
         String pointsString = "";
         for(int i=0;i<teams.size();i++){
             Team t = teams.get(i);
